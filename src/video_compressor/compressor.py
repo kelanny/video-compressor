@@ -7,6 +7,7 @@ import subprocess
 def compress_video(
     input_file: Path,
     output_file: Path,
+    crf: int = 23,
 ) -> None:
     """Compress a video using FFmpeg."""
     command = [
@@ -16,7 +17,7 @@ def compress_video(
         "-c:v",
         "libx264",
         "-crf",
-        "23",
+        str(crf),
         "-preset",
         "medium",
         "-c:a",
