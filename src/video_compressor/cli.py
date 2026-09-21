@@ -35,11 +35,17 @@ def compress(input_file: Path, output: Path | None, crf: int) -> None:
                 f"{input_file.stem}_compressed_{crf}"
                 )
 
-    compress_video(
-        input_file=input_file,
-        output_file=output,
-        crf=crf,
-    )
+    try:
+        compress_video(
+            input_file=input_file,
+            output_file=output,
+            crf=crf,
+        )
+    except FileNotFoundError:
+        raise click.ClickException(
+            "FFmpeg was not found. "
+            "Make sure FFmpeg is installed and available on your PATH."
+        )
 
     click.echo(f"Compressed video: {output}")
 

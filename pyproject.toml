@@ -11,6 +11,11 @@ dependencies = [
     "click>=8.1",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
 [project.scripts]
 videocomp = "video_compressor.cli:cli"
 
